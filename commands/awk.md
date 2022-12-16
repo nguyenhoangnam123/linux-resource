@@ -368,3 +368,34 @@ shock 15 8
 ```
 awk --file ./functions.awk
 ```
+
+- get users by states
+```
+cat <<EOF | awk -F, '($1 == LastState) {print "\t" $2}; ($1 != LastState) {LastState = $1;
+ print $1; print "\t" $2}'
+  Massachusetts, John Daggett, 341 King Road, Plymouth, Massachusetts
+  Virginia, Alice Ford, 22 East Broadway, Richmond, Virginia
+  Oklahoma, Orville Thomas, 11345 Oak Bridge Road, Tulsa, Oklahoma
+  Pennsylvania, Terry Kalkas, 402 Lans Road, Beaver Falls, Pennsylvania
+  Massachusetts, Eric Adams, 20 Post Road, Sudbury, Massachusetts
+  Virginia, Hubert Sims, 328A Brook Road, Roanoke, Virginia
+  California, Amy Wilde, 334 Bayshore Pkwy, Mountain View, California
+  Massachusetts, Sal Carpenter, 73 6th Street, Boston, Massachusetts
+EOF
+Massachusetts
+         John Daggett
+  Virginia
+         Alice Ford
+  Oklahoma
+         Orville Thomas
+  Pennsylvania
+         Terry Kalkas
+  Massachusetts
+         Eric Adams
+  Virginia
+         Hubert Sims
+  California
+         Amy Wilde
+  Massachusetts
+         Sal Carpenter
+```
